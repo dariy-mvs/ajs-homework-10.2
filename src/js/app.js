@@ -13,27 +13,15 @@ class Team {
     };
   }
 
-  [Symbol.iterator]() {
+  * [Symbol.iterator]() {
     let counter = 0;
-    const { size } = this;
-    const { char } = this;
-    return {
-      next() {
-        if (counter < size) {
-          counter += 1;
-          return {
-            done: false,
-            value: char,
-          };
-        }
-        return {
-          done: true,
-          value: char,
-        };
-      },
-    };
+    while (counter <= this.size) {
+      counter += 1;
+      yield this.char;
+    }
   }
 }
+
 
 const myTeam = new Team(7);
 
